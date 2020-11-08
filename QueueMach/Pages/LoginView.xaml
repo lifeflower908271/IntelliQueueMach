@@ -5,7 +5,7 @@
         xmlns:s="https://github.com/canton7/Stylet"
         Title="LoginView"
         Width="300" Height="auto"
-        SizeToContent="Height"
+        Background="White" SizeToContent="Height"
         mc:Ignorable="d">
     <Grid Margin="20">
         <Grid.RowDefinitions>
@@ -34,13 +34,15 @@
                        Text="账号：" />
             <TextBox Grid.Row="0" Grid.Column="1"
                      VerticalContentAlignment="Center"
+                     Background="White"
                      Text="{Binding UserAccount, UpdateSourceTrigger=PropertyChanged}" />
             <TextBlock Grid.Row="2" Grid.Column="0"
                        Text="密码：" />
             <PasswordBox Grid.Row="2" Grid.Column="1"
                          VerticalContentAlignment="Center"
                          attach:PasswordBoxHelper.IsMonitoring="True"
-                         attach:PasswordBoxHelper.PasswordValue="{Binding UserPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                         attach:PasswordBoxHelper.PasswordValue="{Binding UserPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Background="White" />
         </Grid>
 
         <Grid Grid.Row="2" Margin="0,5,0,0">

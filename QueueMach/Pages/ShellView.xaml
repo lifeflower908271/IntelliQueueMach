@@ -6,6 +6,7 @@
         Title="排队机系统"
         Width="600" Height="450"
         d:DataContext="{d:DesignInstance local:ShellViewModel}"
+        Background="White"
         mc:Ignorable="d">
     <Window.Resources>
         <Style TargetType="{x:Type GroupBox}">
@@ -41,7 +42,9 @@
                         <ColumnDefinition Width="2*" />
                     </Grid.ColumnDefinitions>
 
-                    <TextBox Grid.Column="0" Text="{Binding ReportMessage}" />
+                    <TextBox Grid.Column="0"
+                             Background="White"
+                             Text="{Binding ReportMessage}" />
                     <Button Grid.Column="1"
                             Command="{s:Action CmdReport}"
                             Content="发送消息" />
