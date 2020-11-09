@@ -13,14 +13,14 @@ namespace Utilities
         public const String ACCESS_TOKEN = nameof(ACCESS_TOKEN); // 访问令牌
 
         public const int DEVICE_ID = 142604; // 设备ID
-        public const string SENSOR_QUEUE_NUMBER = "m_num";  // 传感器——排队人数
-        public const string ACTUATOR_REPORT = "m_report"; // 执行器——语音播报
-        public const string ACTUATOR_TAKE = "m_take"; // 执行器——取号
-        public const string ACTUATOR_CALL = "m_call"; // 执行器——叫号
+        public const string APITAG_NUMBER = "m_num";  // 传感器：排队人数
+        public const string APITAG_REPORT = "m_report"; // // 执行器：语音播报
+        public const string APITAG_TAKE = "m_take"; // 执行器：取号
+        public const string APITAG_CALL = "m_call"; // 执行器：叫号
 
         public static void Initialize()
         {
-            Store.Set(API_HOST, ApplicationSettings.Get(CFG_.API_HOST)); // 缓存
+            Store.Set(API_HOST, ApplicationSettings.Get(CFG_.API_HOST));
             Store.Set(NLE_API, new NLECloudAPI(Store.Get<String>(API_HOST)));
             Store.Set<object>(ACCESS_TOKEN, null);
         }

@@ -56,8 +56,13 @@ namespace QueueMach.Pages
             this.View.Visibility = Visibility.Hidden;
             var vmLogin = _container.Get<LoginViewModel>();
             var rst = _windowManager.ShowDialog(vmLogin);
+            if (rst == false)
+            {
+                RequestClose();
+                return;
+            }
             this.View.Visibility = Visibility.Visible;
-            if (rst == false) RequestClose();
+
             m_token = Store.Get<String>(UDG_.ACCESS_TOKEN);
 
           
@@ -85,7 +90,7 @@ namespace QueueMach.Pages
         {
             Task.Factory.StartNew(() =>
             {
-                var resp = nle_api.GetSensorInfo(UDG_.DEVICE_ID, UDG_.SENSOR_QUEUE_NUMBER, m_token); // 获取排队人数信息
+                var resp = nle_api.GetSensorInfo(UDG_.DEVICE_ID, UDG_.APITAG_NUMBER, m_token); // 获取排队人数信息
                 if (!resp.IsSuccess())
                     return;
                 var val = resp.ResultObj.Value.ToString(); // 读取排队人数的字符串表达式
@@ -116,7 +121,7 @@ namespace QueueMach.Pages
             }
             var isSuccess = await Task<bool>.Factory.StartNew(() =>
             {
-                var resp = nle_api.Cmds(UDG_.DEVICE_ID, UDG_.ACTUATOR_REPORT, ReportMessage, m_token);
+                var resp = nle_api.Cmds(UDG_.DEVICE_ID, UDG_.APITAG_REPORT, ReportMessage, m_token);
 
                 return resp.IsSuccess();
             });
@@ -137,7 +142,7 @@ namespace QueueMach.Pages
         {
             var isSuccess = await Task<bool>.Factory.StartNew(() =>
             {
-                var resp = nle_api.Cmds(UDG_.DEVICE_ID, UDG_.ACTUATOR_TAKE, 1, m_token);
+                var resp = nle_api.Cmds(UDG_.DEVICE_ID, UDG_.APITAG_TAKE, 1, m_token);
                 return resp.IsSuccess();
             });
             if (isSuccess)
@@ -157,7 +162,7 @@ namespace QueueMach.Pages
         {
             var isSuccess = await Task<bool>.Factory.StartNew(() =>
             {
-                var resp = nle_api.Cmds(UDG_.DEVICE_ID, UDG_.ACTUATOR_TAKE, 0, m_token);
+                var resp = nle_api.Cmds(UDG_.DEVICE_ID, UDG_.APITAG_TAKE, 0, m_token);
                 return resp.IsSuccess();
             });
             if (isSuccess)
@@ -177,7 +182,7 @@ namespace QueueMach.Pages
         {
             var isSuccess = await Task<bool>.Factory.StartNew(() =>
             {
-                var resp = nle_api.Cmds(UDG_.DEVICE_ID, UDG_.ACTUATOR_CALL, 1, m_token);
+                var resp = nle_api.Cmds(UDG_.DEVICE_ID, UDG_.APITAG_CALL, 1, m_token);
                 return resp.IsSuccess();
             });
             if (isSuccess)
